@@ -7,6 +7,7 @@ const User = require('./users');
 const acl = require('./acl-middleware');
 const basicAuth = require('./basic-auth-middleware');
 const bearerAuth = require('./bearer-auth-middleware');
+require('dotenv');
 
 // middleware
 app.use(express.json());
@@ -45,7 +46,7 @@ app.get('/update', bearerAuth, acl('update'), (req, res) => {
   res.status(200).send('OK - you can update');
 })
 
-mongoose.connect('mongodb://localhost:27017/auth', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(3000, () => console.log('server up!'));
   })
