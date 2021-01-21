@@ -1,6 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
+  "homepage": "/auth-server",
   "description": "",
   "main": "app.js",
   "scripts": {
