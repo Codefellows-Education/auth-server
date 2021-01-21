@@ -46,7 +46,7 @@ app.get('/update', bearerAuth, acl('update'), (req, res) => {
   res.status(200).send('OK - you can update');
 })
 
-mongoose.connect(process.env.MONGO_DATABASE_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(3000, () => console.log('server up!'));
   })
