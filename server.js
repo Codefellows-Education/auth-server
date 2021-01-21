@@ -48,6 +48,6 @@ app.get('/update', bearerAuth, acl('update'), (req, res) => {
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    app.listen(3000, () => console.log('server up!'));
+    app.listen(process.env.PORT, () => console.log('server up!'));
   })
   .catch(e => console.error('could not start server', e.message));
