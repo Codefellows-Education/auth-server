@@ -7,7 +7,7 @@ const User = require('./users');
 const acl = require('./acl-middleware');
 const basicAuth = require('./basic-auth-middleware');
 const bearerAuth = require('./bearer-auth-middleware');
-require('dotenv');
+require('dotenv').config();
 const cors = require('cors');
 
 // middleware

@@ -8,7 +8,7 @@ module.exports = (req, res, next) => {
 
   // req.headers.authorization should be : "Basic sdkjdsljd="
 
-  if (!req.headers.authorization) { next('Invalid Login'); return; }
+  if (!req.headers.authorization) { console.log('no authorization header'); next('Invalid Login'); return; }
 
   // Pull out just the encoded part by splitting the header into an array on the space and popping off the 2nd element
   let basic = req.headers.authorization.split(' ').pop();
@@ -22,6 +22,6 @@ module.exports = (req, res, next) => {
       req.user = validUser;
       next();
     })
-    .catch(err => next('Invalid Login'));
+    .catch(err => {console.log('failed to validate'); next('Invalid Login')});
 
 }

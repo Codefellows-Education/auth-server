@@ -10,7 +10,7 @@ const users = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true},
   role: { type: String, required: true, default: 'user', enum: ['user', 'editor', 'admin']}
-}, { toJSON: { virtuals: true }});
+}, { toJSON: { virtuals: true }, toObject: { virtuals: true }});
 
 users.pre('save', async function () {
   if(this.isModified('password')){
@@ -23,7 +23,9 @@ users.pre('save', async function () {
 // token: ao;ienapp9a84t
 users.virtual('token').get(function () {
   const tokenObject = {
-    username:this.username
+    username: this.username,
+    capabilities: this.capabilities,
+    role: this.role,
   }
 
   return jwt.sign(tokenObject, SECRET);
@@ -43,8 +45,10 @@ users.virtual('capabilities').get(function () {
 // BASIC AUTH
 users.statics.authenticateBasic = async function (username, password) {
   const user = await this.findOne({ username });
+  console.log('username, password, user', username, password, user);
   const valid = bcrypt.compare(password, user.password);
   if( valid ){ return user; }
+  console.log('invalid user', username, password);
   throw new Error('Invalid User');
 }
 
