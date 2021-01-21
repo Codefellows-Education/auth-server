@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "homepage": "/auth-server",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node server.js",
     "watch": "nodemon app.js",
     "test-watch": "jest --watchAll",
     "test": "jest"
