@@ -36,15 +36,15 @@ app.get('/allusers', bearerAuth, (req, res) => {
 
 // if you pass the bearerAuth, the user is on the request object
 // the next() will send you to the acl middleware
-app.get('/create', bearerAuth, acl('create'), (req, res) => {
+app.post('/create', bearerAuth, acl('create'), (req, res) => {
   res.status(200).send('OK - you can create');
 })
 
-app.get('/delete', bearerAuth, acl('delete'), (req, res) => {
+app.delete('/delete', bearerAuth, acl('delete'), (req, res) => {
   res.status(200).send('OK - you can delete');
 })
 
-app.get('/update', bearerAuth, acl('update'), (req, res) => {
+app.put('/update', bearerAuth, acl('update'), (req, res) => {
   res.status(200).send('OK - you can update');
 })
 
